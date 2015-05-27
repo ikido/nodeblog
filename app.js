@@ -9,7 +9,7 @@ import db from './models/db'
 import post from './models/post'
 
 import index from './routes/index'
-import users from './routes/users'
+import posts from './routes/posts'
 
 const app = express()
 
@@ -26,7 +26,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', index)
-app.use('/users', users)
+app.use('/posts', posts);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

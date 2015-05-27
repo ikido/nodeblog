@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h1 Post Id #{post._id}
+    
+  form(action='/posts/#{post._id}',method='post',name='updatepost',enctype='application/x-www-form-urlencoded')
+    
+    p Title: 
+      input#inputTitle(type='text', value='#{post.title}', name='title')
+    
+    p Body: 
+      textarea#inputBody(name='body')
+        = post.body
+
+    p Is post published?: 
+      input#inputIsPublished(type='checkbox', name='is_published', checked=('#{post.is_published}'==='true' ? "checked" : undefined))
+    
+    p 
+      input(type='hidden',value='PUT',name='_method')
+    
+    p 
+      button#btnSubmit(type='submit') Update
+      a(href='/posts') Cancel

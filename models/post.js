@@ -4,7 +4,7 @@ const postSchema = new mongoose.Schema({
   title: String,
   body: String,
   created_at: { type: Date, default: Date.now },
-  isPublished: Boolean
+  is_published: Boolean
 })
 
 mongoose.model('Post', postSchema)

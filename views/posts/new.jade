@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h1.
+    #{title}
+  
+  form#formAddPost(name="addpost",method="post",action="/posts")
+    
+    p Title: 
+      input#inputTitle(type="text", placeholder="Enter title...", name="title")
+    
+    p Body:
+      textarea#inputBody(placeholder="Enter body...", name="body")
+
+    p Is post published?: 
+      input#inputIsPublished(type='checkbox', name='is_published')
+        
+    p
+      button#btnSubmit(type="submit") Create
+      a(href='/posts') Cancel
