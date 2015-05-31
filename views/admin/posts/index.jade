@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  h2.
+    #{title}
+
+  a(href='/admin/posts/new') Create new
+
+  ul
+    - each post, i in posts
+      li
+        = post.title
+        p
+          strong Created at:
+          &nbsp;
+          = post.created_at
+          br.
+          strong Updated at:
+          &nbsp;
+          = post.updated_at
+
+          
+        form(action='/admin/posts/#{post._id}',method='post',enctype='application/x-www-form-urlencoded')
+          input(type='hidden',value='DELETE',name='_method')
+          button(type='submit').
+            Delete
+        p 
+          a(href='/admin/posts/#{post._id}/edit') Edit
+        p
+          a(href='/admin/posts/#{post._id}') Show

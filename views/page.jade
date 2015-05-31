@@ -19,10 +19,12 @@ block content
   nav
     ul.pager
 
+      if prevPage
+        li
+          a(href='/page/'+prevPage) Previous
+
       if nextPage
         li
           a(href='/page/'+nextPage) Next
 
         
-
-  

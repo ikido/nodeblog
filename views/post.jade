@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+  .blog-post
+    h2.blog-post-title= post.title
+
+    p.blog-post-meta
+      = moment(post.created_at).format('MMMM D YYYY')
+
+    = post.body

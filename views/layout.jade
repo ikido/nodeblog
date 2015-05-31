@@ -1,7 +1,39 @@
 doctype html
 html
   head
-    title= title
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Node blog
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery-2.1.4.min.js')
+    script(src='/javascripts/bootstrap.min.js')
+
+    <!--[if lt IE 9]>
+    script(src='/javascripts/html5shiv.min.js')
+    script(src='/javascripts/respond.min.js')
+    <![endif]-->
+
   body
-    block content
+
+    .blog-masthead
+      .container
+        nav.blog-nav
+          a.blog-nav-item(class=path=='/'?'active':undefined, href='/') Home
+          a.blog-nav-item(class=path=='/about'?'active':undefined, href='/about') About
+
+    .container
+
+      .blog-header
+        h1.blog-title The Bootstrap Blog
+        p.lead.blog-description
+          The official example template of creating a blog with Bootstrap.
+
+      .row
+        .col-sm-12.blog-main
+          block content
+
+    footer.blog-footer
+      p
+        a(href="#") Back to top

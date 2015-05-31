@@ -1,15 +1,22 @@
 extends ../layout
 
 block content
-  h1 Post Id #{post._id}
+  h2 Post Id #{post._id}
     
-  form(action='/posts/#{post._id}',method='post',name='updatepost',enctype='application/x-www-form-urlencoded')
+  form(action='/admin/posts/#{post._id}',method='post',name='updatepost',enctype='application/x-www-form-urlencoded')
     
     p Title: 
       input#inputTitle(type='text', value='#{post.title}', name='title')
+
+    p Slug: 
+      input#inputSlug(type='text', value='#{post.slug}', name='slug')
     
+    p Excerpt: 
+      textarea#inputExcerpt(name='excerpt', rows=5, cols=10)
+        = post.excerpt
+
     p Body: 
-      textarea#inputBody(name='body')
+      textarea#inputBody(name='body', rows=5, cols=10)
         = post.body
 
     p Is post published?: 
@@ -20,4 +27,4 @@ block content
     
     p 
       button#btnSubmit(type='submit') Update
-      a(href='/posts') Cancel
+      a(href='/admin/posts') Cancel

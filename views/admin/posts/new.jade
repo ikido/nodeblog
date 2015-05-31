@@ -1,13 +1,19 @@
 extends ../layout
 
 block content
-  h1.
+  h2.
     #{title}
   
-  form#formAddPost(name="addpost",method="post",action="/posts")
+  form#formAddPost(name="addpost",method="post",action="/admin/posts")
     
     p Title: 
       input#inputTitle(type="text", placeholder="Enter title...", name="title")
+
+    p Slug: 
+      input#inputSlug(type='text', placeholder='', name='slug')
+
+    p Excerpt:
+      textarea#inputExcerpt(name='excerpt', rows=5, cols=10)
     
     p Body:
       textarea#inputBody(placeholder="Enter body...", name="body")
@@ -17,4 +23,4 @@ block content
         
     p
       button#btnSubmit(type="submit") Create
-      a(href='/posts') Cancel
+      a(href='/admin/posts') Cancel
