@@ -6,13 +6,14 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import moment from 'moment'
 
-import db from './models/db'
-import post from './models/post'
+import db from './models/index'
 
-import staticPages from './routes/static_pages'
-import posts from './routes/posts'
-import postPages from './routes/post_pages'
-import adminPosts from './routes/admin/posts'
+import routes from './routes'
+
+// import staticPages from './routes/static_pages'
+// import posts from './routes/posts'
+// import postPages from './routes/post_pages'
+// import adminPosts from './routes/admin/posts'
 
 const app = express()
 
@@ -36,12 +37,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use('/', routes)
 
-
-app.use('/', staticPages)
-app.use('/page', postPages)
-app.use('/posts', posts)
-app.use('/admin', adminPosts);
+// app.use('/', staticPages)
+// app.use('/page', postPages)
+// app.use('/posts', posts)
+// app.use('/admin', adminPosts);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

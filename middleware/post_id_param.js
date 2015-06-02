@@ -1,9 +1,6 @@
-import express  from 'express'
 import mongoose from 'mongoose'
 
-const router = express.Router()
-
-router.param('id', (req, res, next, id) => {
+const postIdParam = function (req, res, next, id) {
   //console.log('validating ' + id + ' exists');
   //find the ID in the Database
   mongoose.model('Post').findById(id, (err, post) => {
@@ -28,22 +25,6 @@ router.param('id', (req, res, next, id) => {
       next()
     } 
   })
-})
+}
 
-router.get('/:id', (req, res) => {
-    mongoose.model('Post').findById(req.id, (err, post) => {
-      if (err) {
-        console.log(`GET Error: There was a problem retrieving: ${err}`);
-      } else {
-        console.log(`GET Retrieving ID: ${post._id}`);
-
-        res.render('post', {
-          post,
-          path: req.path
-        })
-      }
-    })
-  }) 
-
-
-export default router
+export default postIdParam

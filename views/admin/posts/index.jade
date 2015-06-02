@@ -1,30 +1,31 @@
 extends ../layout
 
 block content
-  h2.
-    #{title}
+  h2 Listing all posts
 
-  a(href='/admin/posts/new') Create new
+  p
+    a(href='/admin/posts/new') Create new
 
-  ul
-    - each post, i in posts
-      li
-        = post.title
-        p
-          strong Created at:
-          &nbsp;
-          = post.created_at
-          br.
-          strong Updated at:
-          &nbsp;
-          = post.updated_at
+  table.table.table-striped.posts
+    thead
+      tr
+        th Title
+        th Created at
+        th Updated at
+        th
 
-          
-        form(action='/admin/posts/#{post._id}',method='post',enctype='application/x-www-form-urlencoded')
-          input(type='hidden',value='DELETE',name='_method')
-          button(type='submit').
-            Delete
-        p 
-          a(href='/admin/posts/#{post._id}/edit') Edit
-        p
-          a(href='/admin/posts/#{post._id}') Show
+      - each post, i in posts
+        tr
+          td.title= post.title
+          td.created_at= moment(post.created_at).format('MM/DD//YYYY HH:mm:ss')
+          td.updated_at= moment(post.updated_at).format('MM/DD//YYYY HH:mm:ss')
+          td.actions
+            .buttons
+              form(action='/admin/posts/#{post._id}',method='post',enctype='application/x-www-form-urlencoded')
+                input(type='hidden',value='DELETE',name='_method')
+                button.delete-post.btn.btn-default.btn-xs(type='submit').
+                  Delete
+
+                a.btn.btn-default.btn-xs(href='/admin/posts/#{post._id}/edit') Edit
+
+                a.btn.btn-default.btn-xs(href='/posts/#{post._id}') Show

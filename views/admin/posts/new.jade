@@ -1,26 +1,33 @@
 extends ../layout
 
 block content
-  h2.
-    #{title}
-  
-  form#formAddPost(name="addpost",method="post",action="/admin/posts")
+  h2 New post
+
+
+  form(method="post",action="/admin/posts",enctype='application/x-www-form-urlencoded')
+
     
-    p Title: 
-      input#inputTitle(type="text", placeholder="Enter title...", name="title")
+    .form-group
+      label(for='tile') Title
+      input.form-control(name='title' type='text' placeholder='Enter title')
 
-    p Slug: 
-      input#inputSlug(type='text', placeholder='', name='slug')
+    .form-group
+      label(for='slug') Slug
+      input.form-control(name='slug' type='text' placeholder='Enter slug')
 
-    p Excerpt:
-      textarea#inputExcerpt(name='excerpt', rows=5, cols=10)
-    
-    p Body:
-      textarea#inputBody(placeholder="Enter body...", name="body")
+    .checkbox
+      label
+        input#is_published(name='is_published',type='checkbox')
 
-    p Is post published?: 
-      input#inputIsPublished(type='checkbox', name='is_published')
-        
-    p
-      button#btnSubmit(type="submit") Create
-      a(href='/admin/posts') Cancel
+        | Post is published
+
+    .form-group
+      label(for='excerpt') Excerpt
+      textarea.form-control#excerpt(name='excerpt', rows=5, cols=10)
+
+    .form-group
+      label(for='body') Body
+      textarea.form-control#body(name='body', rows=5, cols=10)
+
+    button.btn.btn-default(type='submit') Submit
+    a.btn.btn-default(href='/admin/posts') Cancel

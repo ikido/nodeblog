@@ -1,30 +1,36 @@
 extends ../layout
 
 block content
-  h2 Post Id #{post._id}
-    
-  form(action='/admin/posts/#{post._id}',method='post',name='updatepost',enctype='application/x-www-form-urlencoded')
-    
-    p Title: 
-      input#inputTitle(type='text', value='#{post.title}', name='title')
+  h2 Edit post Id #{post._id}
 
-    p Slug: 
-      input#inputSlug(type='text', value='#{post.slug}', name='slug')
+
+  form(action='/admin/posts/#{post._id}',method='post',name='updatepost',enctype='application/x-www-form-urlencoded')
+
+    input(type='hidden',value='PUT',name='_method')
     
-    p Excerpt: 
-      textarea#inputExcerpt(name='excerpt', rows=5, cols=10)
+    .form-group
+      label(for='tile') Title
+      input.form-control(name='title' type='text' placeholder='Enter title' value=post.title)
+
+    .form-group
+      label(for='slug') Slug
+      input.form-control(name='slug' type='text' placeholder='Enter slug' value=(post.slug ? post.slug : ''))
+
+    .checkbox
+      label
+        input#is_published(name='is_published', checked=(post.is_published === true ? 'checked' : undefined),type='checkbox')
+
+        | Post is published
+
+    .form-group
+      label(for='excerpt') Excerpt
+      textarea.form-control#excerpt(name='excerpt', rows=5, cols=10)
         = post.excerpt
 
-    p Body: 
-      textarea#inputBody(name='body', rows=5, cols=10)
+    .form-group
+      label(for='body') Body
+      textarea.form-control#body(name='body', rows=5, cols=10)
         = post.body
 
-    p Is post published?: 
-      input#inputIsPublished(type='checkbox', name='is_published', checked=('#{post.is_published}'==='true' ? "checked" : undefined))
-    
-    p 
-      input(type='hidden',value='PUT',name='_method')
-    
-    p 
-      button#btnSubmit(type='submit') Update
-      a(href='/admin/posts') Cancel
+    button.btn.btn-default(type='submit') Submit
+    a.btn.btn-default(href='/admin/posts') Cancel

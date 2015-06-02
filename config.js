@@ -16,5 +16,6 @@ dotenv.config({
 export default {
 	admin_login: process.env.ADMIN_LOGIN,
 	admin_password: process.env.ADMIN_PASSWORD,
-	db_url: process.env.DB_URL
+	db_url: process.env.DB_URL,
+	postsPerPage: 5
 }
