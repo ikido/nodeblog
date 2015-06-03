@@ -20,8 +20,12 @@ block content
     ul.pager
 
       if prevPage
+
         li
-          a(href='/page/'+prevPage) Previous
+          if prevPage === 1
+            a(href='/') Previous
+          else
+            a(href='/page/'+prevPage) Previous
 
       if nextPage
         li

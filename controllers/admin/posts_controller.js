@@ -14,9 +14,7 @@ const getPostParams = function(req) {
 const AdminPostsController = {
 
 	index(req, res, next) {
-	  mongoose.model('Post')
-      .find({})
-      .exec()
+	  mongoose.model('Post').find({})
       .then( posts => {
 	      res.render('admin/posts/index', {
 	        title: 'All posts',
@@ -35,14 +33,12 @@ const AdminPostsController = {
 	create(req, res) {
     
     var postParams = getPostParams(req)
-
-    mongoose.model('Post')
-      .create(postParams)
+    mongoose.model('Post').createPost(postParams)
       .then( post => {      
         res.redirect("/admin/posts")
       })
       .then(null, err => {
-        res.send("There was a problem adding the information to the database.")
+        res.send(`There was a problem adding the information to the database: ${err}`)
       })
   },
 
@@ -51,9 +47,7 @@ const AdminPostsController = {
     var postParams = getPostParams(req)
     
     //find the document by ID
-    mongoose.model('Post')
-      .findOneAndUpdate({ "_id": req.id }, postParams)
-      .exec()
+    mongoose.model('Post').updatePost(req.id, postParams)
       .then( post => {
         res.redirect(`/admin/posts`)
       })
@@ -63,12 +57,7 @@ const AdminPostsController = {
   },
 
   destroy(req, res) {
-    mongoose.model('Post')
-      .findById(req.id)
-      .exec()
-      .then( post => {
-        return post.remove()
-      })
+    mongoose.model('Post').removePost(req.id)
       .then( blob => {
         res.redirect("/admin/posts")
       })
@@ -78,12 +67,9 @@ const AdminPostsController = {
   },
 
   edit(req, res) {
-    mongoose.model('Post')
-      .findById(req.id)
-      .exec()
+    mongoose.model('Post').findById(req.id)
       .then( post => {
         res.render('admin/posts/edit', { post })
-      
       })
       .then(null, err => {
         console.log(`GET Error: There was a problem retrieving: ${err}`);

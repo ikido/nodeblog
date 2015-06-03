@@ -2,11 +2,8 @@ import mongoose from 'mongoose'
 
 const PostsController = {
 	show(req, res) {
-    mongoose.model('Post')
-      .findById(req.id)
-      .exec()
+    mongoose.model('Post').findById(req.id)
       .then(post => {
-
         res.render('post', {
           post,
           path: req.path
