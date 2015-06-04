@@ -1,13 +1,14 @@
 import mongoose from 'mongoose'
 import config from '../config'
 
+const Post = mongoose.model('Post')
 
 const PostPagesController = {
 	show(req, res) {
 
 		var page = req.postsPageNumber
 
-	  mongoose.model('Post').getPublishedPostsForPage(page)
+	  Post.getPublishedPostsForPage(page)
 	  	.then( result => {
 
 	  		var { posts, totalCount, nextPage, prevPage } = result

@@ -12,6 +12,7 @@ const router = express.Router()
 router.use(middleware.bodyParser)
 router.use(middleware.methodOverride)
 router.param('postId', middleware.postIdParam)
+router.param('postSlug', middleware.postSlugParam)
 router.param('postsPageNumber', middleware.postsPageNumber)
 
 // static routes
@@ -19,7 +20,7 @@ router.get('/', StaticPagesController.index)
 router.get('/about', StaticPagesController.about)
 
 // posts
-router.get('/posts/:postId', PostsController.show) 
+router.get('/posts/:postSlug', PostsController.show) 
 
 // post pages
 router.get('/page/:postsPageNumber', PostPagesController.show)

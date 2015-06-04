@@ -11,10 +11,12 @@ const getPostParams = function(req) {
   ])
 }
 
+const Post = mongoose.model('Post')
+
 const AdminPostsController = {
 
 	index(req, res, next) {
-	  mongoose.model('Post').find({})
+	  Post.find({}).sort({ create_at: -1 })
       .then( posts => {
 	      res.render('admin/posts/index', {
 	        title: 'All posts',
@@ -33,7 +35,7 @@ const AdminPostsController = {
 	create(req, res) {
     
     var postParams = getPostParams(req)
-    mongoose.model('Post').createPost(postParams)
+    Post.createPost(postParams)
       .then( post => {      
         res.redirect("/admin/posts")
       })
@@ -47,7 +49,7 @@ const AdminPostsController = {
     var postParams = getPostParams(req)
     
     //find the document by ID
-    mongoose.model('Post').updatePost(req.id, postParams)
+    Post.updatePost(req.id, postParams)
       .then( post => {
         res.redirect(`/admin/posts`)
       })
@@ -57,7 +59,7 @@ const AdminPostsController = {
   },
 
   destroy(req, res) {
-    mongoose.model('Post').removePost(req.id)
+    Post.removePost(req.id)
       .then( blob => {
         res.redirect("/admin/posts")
       })
@@ -67,7 +69,7 @@ const AdminPostsController = {
   },
 
   edit(req, res) {
-    mongoose.model('Post').findById(req.id)
+    Post.findById(req.id)
       .then( post => {
         res.render('admin/posts/edit', { post })
       })

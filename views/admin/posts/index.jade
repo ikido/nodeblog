@@ -16,7 +16,9 @@ block content
 
       - each post, i in posts
         tr
-          td.title= post.title
+          td.title
+            a(href='/admin/posts/#{post._id}/edit')= post.title
+
           td.created_at= moment(post.created_at).format('MM/DD//YYYY HH:mm:ss')
           td.updated_at= moment(post.updated_at).format('MM/DD//YYYY HH:mm:ss')
           td.actions
@@ -25,7 +27,3 @@ block content
                 input(type='hidden',value='DELETE',name='_method')
                 button.delete-post.btn.btn-default.btn-xs(type='submit').
                   Delete
-
-                a.btn.btn-default.btn-xs(href='/admin/posts/#{post._id}/edit') Edit
-
-                a.btn.btn-default.btn-xs(href='/posts/#{post._id}') Show

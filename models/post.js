@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import timestamps from 'mongoose-timestamp'
+import urlSlugs from 'mongoose-url-slugs'
 import config from '../config'
 
 const postsPerPage = config.postsPerPage
@@ -15,6 +16,7 @@ const postSchema = new mongoose.Schema({
 })
 
 postSchema.plugin(timestamps)
+postSchema.plugin(urlSlugs('title', { update: true }))
 
 postSchema.statics.getPublishedPostsForPage = function(page) {
   var foundPosts

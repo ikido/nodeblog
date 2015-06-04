@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
 
+const Post = mongoose.model('Post')
+
 const PostsController = {
 	show(req, res) {
-    mongoose.model('Post').findById(req.id)
+    Post.findBySlug(req.postSlug)
       .then(post => {
         res.render('post', {
           post,

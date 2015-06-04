@@ -1,9 +1,11 @@
 import mongoose from 'mongoose'
 
+const Post = mongoose.model('Post')
+
 const StaticPagesController = {
 	
 	index(req, res, next) {
-    mongoose.model('Post').getPublishedPostsForPage(1)
+    Post.getPublishedPostsForPage(1)
       .then( result => {
 
         var { posts, totalCount, nextPage, prevPage } = result
@@ -14,7 +16,6 @@ const StaticPagesController = {
           nextPage
         })
 
-      // same as .then(null, err => { })
       }).then(null, err => {
         console.log(err)
       })      

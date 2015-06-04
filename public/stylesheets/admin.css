@@ -175,7 +175,7 @@ table.posts td.created_at, table.posts td.updated_at {
 }
 
 table.posts td.actions {
-  width: 20%;
+  width: 10%;
 }
 
 table.posts .buttons {

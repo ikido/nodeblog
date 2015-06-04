@@ -6,7 +6,7 @@ block content
 
     .blog-post
       h2.blog-post-title
-        a(href='/posts/#{post._id}')= post.title
+        a(href='/posts/#{post.slug}')= post.title
 
       p.blog-post-meta
         = moment(post.created_at).format('MMMM D YYYY')
@@ -14,7 +14,7 @@ block content
       p= post.excerpt
 
       p
-        a(href='/posts/#{post._id}') Read more
+        a(href='/posts/#{post.slug}') Read more
 
   nav
     ul.pager
