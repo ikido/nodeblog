@@ -183,3 +183,10 @@ a.blog-nav-item {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+pre {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 40px;
+}

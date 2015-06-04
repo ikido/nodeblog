@@ -1,7 +1,10 @@
 extends ../layout
 
 block content
-  h2 Edit post Id #{post._id}
+  h2
+    Edit post
+    &nbsp;
+    a.btn.btn-default.btn-xs(href='/posts/#{post.slug}', target='_blank') Show
 
 
   form(action='/admin/posts/#{post._id}',method='post',name='updatepost',enctype='application/x-www-form-urlencoded')
@@ -29,8 +32,9 @@ block content
 
     .form-group
       label(for='body') Body
-      textarea.form-control#body(name='body', rows=5, cols=10)
+      textarea.form-control#body(name='body', rows=50, cols=10)
         = post.body
 
     button.btn.btn-default(type='submit') Submit
+    &nbsp;
     a.btn.btn-default(href='/admin/posts') Cancel

@@ -8,4 +8,4 @@ block content
     p.blog-post-meta
       = moment(post.created_at).format('MMMM D YYYY')
 
-    = post.body
+    div!= md.render(post.body)

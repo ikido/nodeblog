@@ -5,6 +5,7 @@ import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import moment from 'moment'
+import MarkdownIt from 'markdown-it'
 
 import db from './models/index'
 
@@ -23,6 +24,7 @@ app.set('view engine', 'jade')
 
 // provide moment.js for the views
 app.locals.moment = moment
+app.locals.md = new MarkdownIt()
 
 // prettify html in developemtn
 if (app.get('env') === 'development') {

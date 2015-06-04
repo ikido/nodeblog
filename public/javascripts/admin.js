@@ -4,5 +4,7 @@ $(function() {
 			e.preventDefault()
 			e.stopPropagation()
 	  }
-	})	
+	})
 })
+
+hljs.initHighlightingOnLoad()

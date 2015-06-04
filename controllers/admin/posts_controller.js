@@ -37,7 +37,7 @@ const AdminPostsController = {
     var postParams = getPostParams(req)
     Post.createPost(postParams)
       .then( post => {      
-        res.redirect("/admin/posts")
+        res.redirect("/admin/posts/")
       })
       .then(null, err => {
         res.send(`There was a problem adding the information to the database: ${err}`)
@@ -51,7 +51,7 @@ const AdminPostsController = {
     //find the document by ID
     Post.updatePost(req.id, postParams)
       .then( post => {
-        res.redirect(`/admin/posts`)
+        res.redirect(`/admin/posts/${post._id}/edit`)
       })
       .then(null, err => {
         res.send(`There was a problem updating the information to the database: ${err}`)
