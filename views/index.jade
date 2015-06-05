@@ -11,7 +11,7 @@ block content
       p.blog-post-meta
         = moment(post.created_at).format('MMMM D YYYY')
 
-      p= post.excerpt
+      div!= md.render(post.excerpt)
 
       p
         a(href='/posts/#{post.slug}') Read more
