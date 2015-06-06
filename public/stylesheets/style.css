@@ -72,6 +72,10 @@ a.blog-nav-item {
 }
 
 /* Active state gets a caret at the bottom */
+.blog-nav {
+  text-align: center;
+}
+
 .blog-nav .active {
   color: #fff;
 }
@@ -99,14 +103,16 @@ a.blog-nav-item {
   padding-bottom: 20px;
 }
 .blog-title {
-  margin-top: 30px;
+  text-align: center;
+  margin-top: 20px;
   margin-bottom: 0;
-  font-size: 60px;
+/*  font-size: 60px;*/
   font-weight: normal;
   text-transform: uppercase;
 }
 .blog-description {
-  font-size: 20px;
+  text-align: center;
+  font-size: 1.2em;
   color: #999;
 }
 
@@ -189,4 +195,13 @@ pre {
 
 h3 {
   margin-top: 40px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.page-title {
+  margin-bottom: 40px;
+  text-align: center;
 }

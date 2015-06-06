@@ -17,6 +17,4 @@ if (process.env.NODE_ENV === 'production') {
 	options = {}
 }
 
-console.log('mongoose:', config.db_url, options)
-
 mongoose.connect(config.db_url, options)
